@@ -15,7 +15,10 @@
             <div
               class="healthbar text-center"
               style="background-color: green; margin: 0; color: white;"
-            ></div>
+              :style="{width:slayerHealth + '%'}"
+            >
+              {{ slayerHealth }}
+            </div>
           </div>
         </div>
         <div class="small-6 columns">
@@ -24,16 +27,19 @@
             <div
               class="healthbar text-center"
               style="background-color: green; margin: 0; color: white;"
-            ></div>
+              :style="{width:monsterHealth + '%'}"
+            >
+              {{ monsterHealth }}
+            </div>
           </div>
         </div>
       </section>
-      <section class="row controls">
+      <section class="row controls" v-if="!gameIsRunning">
         <div class="small-12 columns">
           <button id="start-game">START NEW GAME</button>
         </div>
       </section>
-      <section class="row controls">
+      <section class="row controls" v-else>
         <div class="small-12 columns">
           <button id="attack">ATTACK</button>
           <button id="special-attack">SPECIAL ATTACK</button>
@@ -49,6 +55,6 @@
         </div>
       </section>
     </div>
-    <scirpt src="app.js"></scirpt>
+    <script src="app.js"></script>
   </body>
 </html>
