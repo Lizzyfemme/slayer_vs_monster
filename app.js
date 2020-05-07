@@ -4,20 +4,26 @@ new Vue({
     slayerHealth: 100,
     monsterHealth: 100,
     gameIsRunning: false,
+    turns: [],
   },
   methods: {
     startGame: function () {
       this.gameIsRunning = true;
       this.slayerHealth = 100;
       this.monsterHealth = 100;
+      this.turns = [];
     },
     attack: function () {
       const slayerMinDamage = 3;
       const slayerMaxDamage = 10;
-      const monsterMinDamage = 5;
-      const monsterMaxDamage = 12;
 
-      this.monsterHealth -= this.damage(slayerMinDamage, slayerMaxDamage);
+      const slayerHit = this.damage(slayerMinDamage, slayerMaxDamage);
+
+      this.monsterHealth -= slayerHit;
+      this.turns.unshift({
+        isPlayer: true,
+        text: "Slayer hits Monster for " + slayerHit,
+      });
       if (this.checkWin()) {
         return;
       }
@@ -26,8 +32,13 @@ new Vue({
     specialAttack: function () {
       const slayerMinDamage = 10;
       const slayerMaxDamage = 20;
+      const slayerHit = this.damage(slayerMinDamage, slayerMaxDamage);
 
-      this.monsterHealth -= this.damage(slayerMinDamage, slayerMaxDamage);
+      this.monsterHealth -= slayerHit;
+      this.turns.unshift({
+        isPlayer: true,
+        text: "Slayer hits Monster HARD for " + slayerHit,
+      });
       if (this.checkWin()) {
         return;
       }
@@ -39,6 +50,10 @@ new Vue({
       } else {
         this.slayerHealth = 100;
       }
+      this.turns.unshift({
+        isPlayer: true,
+        text: "Slayer heals",
+      });
       this.monsterAttack();
     },
     giveUp: function () {
@@ -48,7 +63,12 @@ new Vue({
     monsterAttack: function () {
       const monsterMinDamage = 5;
       const monsterMaxDamage = 12;
-      this.slayerHealth -= this.damage(monsterMinDamage, monsterMaxDamage);
+      const monsterHit = this.damage(monsterMinDamage, monsterMaxDamage);
+      this.slayerHealth -= monsterHit;
+      this.turns.unshift({
+        isPlayer: false,
+        text: "Monster hits Slayer for " + monsterHit,
+      });
       this.checkWin();
     },
     damage: function (minDamage, maxDamage) {
