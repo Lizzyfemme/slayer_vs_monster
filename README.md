@@ -6,10 +6,14 @@ A simple project created while learning VueJS.
 
 - VueJS
 
+## Demo
+
+!["Game play gif"](https://github.com/Lizzyfemme/slayer_vs_monster/blob/master/screenshot/slayer_vs_monster.gif)
+
 ## Screenshot
 
 !["Starting Screen"](https://github.com/Lizzyfemme/slayer_vs_monster/blob/master/screenshot/starting_screen.png)
-!["Gameplay"](https://github.com/Lizzyfemme/slayer_vs_monster/blob/master/screenshot/game_play.png)
+!["Game play"](https://github.com/Lizzyfemme/slayer_vs_monster/blob/master/screenshot/game_play.png)
 
 ## Get Started
 
